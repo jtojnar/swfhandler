@@ -12,7 +12,7 @@ $messages = array();
  */
 $messages['en'] = array(
 	'swfhandler-desc' => 'Create thumbnails of Adobe Flash files using swftools.',
-	'swf-long-video'       => '($1 × $2 pixels, $5 fps, frames: $4, file size: $3, MIME type: $6)',
+	'swf-long-video'       => '$1 × $2 pixels, $5 fps, frames: $4, file size: $3, MIME type: $6',
 	'swf-short-video'      => '$1 video file, $2',
 );
 

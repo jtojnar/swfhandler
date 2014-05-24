@@ -1,6 +1,7 @@
 <?php
 
 // Based on Mark Dayel's movhandler extension. License is under what he chooses to license it under as a dervivative work.
+// Thanks to Brian Wolff for all his help on IRC with all the nasty poorly documented bits.
 
 $dir = dirname(__FILE__) . '/';
 $wgAutoloadClasses['swfhandler'] = $dir . 'swfhandler_body.php';
@@ -19,4 +20,5 @@ $wgExtensionCredits['media'][] = array(
  *  Requires swftools to be installed
  */
 
+$wgMediaHandlers['application/x-shockwave-flash'] = 'swfhandler';
 $wgMediaHandlers['application/vnd.adobe.flash-movie'] = 'swfhandler';
