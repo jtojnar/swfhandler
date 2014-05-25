@@ -95,22 +95,15 @@ class swfhandler extends ImageHandler
 			return new TransformParameterError( $params );
 		}
 		// if mediawiki tells us to take a vacation, do it, otherwise EXCEPTION
-		if ( $flags & self::TRANSFORM_LATER ) return new ThumbnailImage( $image, $dstUrl, false, $params );
+		if ( $flags & self::TRANSFORM_LATER )
+		{
+			return new ThumbnailImage( $image, $dstUrl, false, $params );
+		}
 
 		wfDebug( __METHOD__.": params['width']: {$params['width']} params['height']: {$params['height']}\n" );
 		
 		$clientWidth = $params['width'];
 		$clientHeight = $params['height'];
-		
-		// return thumb if already exists (and is valid image of correct size)
-		/* if (file_exists($dstPath) ) {
-			echo "file exists\n";
-			list($width, $height, $type, $attr) = getImageSize($dstPath);
-			if (($width == $clientWidth) && ($height == $clientHeight))
-			{
-				return new ThumbnailImage( $image, $dstUrl, $clientWidth, $clientHeight, $dstPath );
-			}
-		} */
 		
 		$gis = $image->getImageSize( $image->getLocalRefPath() );
 	
