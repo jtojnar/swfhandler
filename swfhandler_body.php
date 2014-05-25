@@ -61,20 +61,10 @@ class swfhandler extends ImageHandler
 	
 	function getImageSize( $image, $path ) 
 	{
-		//$varinfo = var_export($image, true);
-		//wfDebug( __METHOD__.": image: {$varinfo}\n" );
-		
-		//wfDebug( __METHOD__.": type: " . gettype($path) . "\n");
-		//$varinfo = var_export($path, true);
-		//wfDebug( __METHOD__.": path: {$varinfo}\n" );
-		
-		// unneeded AFAIK on recent MW
-		$mypath = $path;
-		
 		// swfdump -XY
 		// the string looks like -X 100 -Y 100 -r 24.00 -f 1
 		// so [1] is X and [3] is Y
-		$shellret = wfShellExec( "swfdump -XY ". wfEscapeShellArg( $mypath ) . " 2>&1", $retval );
+		$shellret = wfShellExec( "swfdump -XY ". wfEscapeShellArg( $path ) . " 2>&1", $retval );
 
 		wfDebug( __METHOD__.": shellret: {$shellret}\n" );
 		$expandeddims = (explode ( ' ', $shellret ));
