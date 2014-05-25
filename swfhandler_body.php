@@ -50,10 +50,11 @@ class swfhandler extends ImageHandler
 	}
 	
 	function getPageDimensions( $image, $page ) {
-    		$gis = $this->getImageSize( $image->getLocalRefPath() );
+		$width = $image->getWidth();
+		$height = $image->getHeight();
 		return array(
-			'width' => $gis[0],
-			'height' => $gis[1]
+			'width' => $width,
+			'height' => $height
 		);
 	}
 	
