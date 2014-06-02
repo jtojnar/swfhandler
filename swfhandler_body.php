@@ -27,9 +27,8 @@ class swfhandler extends ImageHandler
 			return false;
 		}
 	
-		$gis = $image->getImageSize( $image->getLocalRefPath() );
-		$srcWidth = $gis[0];
-		$srcHeight = $gis[1];
+		$srcWidth = $image->getWidth();
+		$srcHeight = $image->getHeight();
 				
 		wfDebug( __METHOD__.": srcWidth: {$srcWidth} srcHeight: {$srcHeight}\n" );
 			
