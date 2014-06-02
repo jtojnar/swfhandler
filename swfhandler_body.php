@@ -78,14 +78,10 @@ class swfhandler extends ImageHandler
 	function doTransform( $image, $dstPath, $dstUrl, $params, $flags = 0 ) 
 	{
 		if ($params['width'] == 0) {
-			$gis = $image->getImageSize( $image->getLocalRefPath() );
-
-		        $params['width'] = $gis[0];
+		        $params['width'] = $image->getWidth();
 		}
 		if (!array_key_exists('height',$params) || $params['height'] == 0) {
-			$gis = $image->getImageSize( $image->getLocalRefPath() );
-
-		        $params['height'] = $gis[1];
+		        $params['height'] = $image->getHeight();
 		}
 			
 		wfDebug( __METHOD__.": params['width']: {$params['width']} params['height']: {$params['height']}\n" );
@@ -104,10 +100,8 @@ class swfhandler extends ImageHandler
 		$clientWidth = $params['width'];
 		$clientHeight = $params['height'];
 		
-		$gis = $image->getImageSize( $image->getLocalRefPath() );
-	
-		$srcWidth = $gis[0];
-		$srcHeight = $gis[1];
+		$srcWidth = $image->getWidth();
+		$srcHeight = $image->getHeight();
 
 		$srcPath = $image->getLocalRefPath();
 		$retval = 0;
