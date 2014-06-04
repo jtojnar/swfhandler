@@ -48,16 +48,6 @@ class swfhandler extends ImageHandler
 		return true;
 	}
 	
-	function getPageDimensions( $image, $page ) {
-		$width = $image->getWidth();
-		$height = $image->getHeight();
-		return array(
-			'width' => $width,
-			'height' => $height
-		);
-	}
-	
-	
 	function getImageSize( $image, $path ) 
 	{
 		// swfdump -XY
