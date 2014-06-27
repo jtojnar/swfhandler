@@ -94,8 +94,11 @@ class swfhandler extends ImageHandler
 		$srcHeight = $image->getHeight();
 
 		$srcPath = $image->getLocalRefPath();
-		$retval = 0;
-		
+
+		$retval1 = 0;
+		$retval2 = 0;
+		$err1 = "not executed";
+		$err1 = "not executed";
 				
 		$outWidth=$clientWidth;
 		$outHeight=$clientHeight;
@@ -113,24 +116,30 @@ class swfhandler extends ImageHandler
 
 		// we render then scale
 		$cmd1 = "swfrender " . wfEscapeShellArg( $srcPath )." -o ". wfEscapeShellArg( $dstPath );
-
 		$cmd2 = "/usr/bin/mogrify -quality 2 -resize {$outWidth}x{$outHeight} ". wfEscapeShellArg( $dstPath );
 
-
 		wfProfileIn( 'convert' );
-		$err = wfShellExec( $cmd1, $retval );
+		$err1 = wfShellExec($cmd1, $retval1);
 		if ( $retval == 0 )
 		{
-			$err = wfShellExec( $cmd2, $retval );
+			$err2 = wfShellExec($cmd2, $retval2);
 		}
 		wfProfileOut( 'convert' );
+
+		// summarize the results by adding them together
+		$retval = $retval1 + $retval2;
 
 		$removed = $this->removeBadFile( $dstPath, $retval );
 
 		if ( $retval != 0 || $removed ) {
 			wfDebugLog( 'thumbnail',
-				sprintf( 'thumbnail failed on %s: error %d "%s" from "%s"',
-					wfHostname(), $retval, trim($err), $cmd ) );
+				sprintf( 'thumbnail failed on %s: errors ', wfHostname() ) );
+			wfDebugLog( 'thumbnail',
+				sprintf( 'thumbnail failed on step 1: errors %d "%s" from "%s"',
+					$retval1, trim($err1), $cmd1 ) );
+			wfDebugLog( 'thumbnail',
+				sprintf( 'thumbnail failed on step 2: errors %d "%s" from "%s"',
+					$retval2, trim($err2), $cmd2 ) );
 			return new MediaTransformError( 'thumbnail_error', $clientWidth, $clientHeight, $err );
 		} 
 		else 
