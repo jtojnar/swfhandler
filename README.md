@@ -13,7 +13,7 @@ require_once("$IP/extensions/swfhandler/swfhandler.php");
 
 Make sure you can upload SWF files. See the [MediaWiki manual](https://www.mediawiki.org/wiki/Manual:Configuring_file_uploads#Configuring_file_types).
 
-This has only been tested on MediaWiki 1.19.
+This has only been tested on MediaWiki 1.19 and 1.23.
 
 ## Thanks
 
