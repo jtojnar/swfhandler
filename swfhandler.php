@@ -3,6 +3,11 @@
 // Based on Mark Dayel's movhandler extension. License is under what he chooses to license it under as a dervivative work.
 // Thanks to Brian Wolff for all his help on IRC with all the nasty poorly documented bits.
 
+define('SWF_RENDERER_SWFRENDER', 'swfrender');
+define('SWF_RENDERER_GNASH', 'gnash');
+
+$wgSwfhandlerRenderer = SWF_RENDERER_SWFRENDER;
+
 $dir = dirname(__FILE__) . '/';
 $wgAutoloadClasses['swfhandler'] = $dir . 'swfhandler_body.php';
 $wgExtensionMessagesFiles['swfhandler'] = $dir . 'swfhandler.i18n.php';
