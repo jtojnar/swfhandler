@@ -98,7 +98,7 @@ class swfhandler extends ImageHandler
 		$retval1 = 0;
 		$retval2 = 0;
 		$err1 = "not executed";
-		$err1 = "not executed";
+		$err2 = "not executed";
 				
 		$outWidth=$clientWidth;
 		$outHeight=$clientHeight;
@@ -120,7 +120,7 @@ class swfhandler extends ImageHandler
 
 		wfProfileIn( 'convert' );
 		$err1 = wfShellExec($cmd1, $retval1);
-		if ( $retval == 0 )
+		if ( $retval1 == 0 )
 		{
 			$err2 = wfShellExec($cmd2, $retval2);
 		}
@@ -140,7 +140,7 @@ class swfhandler extends ImageHandler
 			wfDebugLog( 'thumbnail',
 				sprintf( 'thumbnail failed on step 2: errors %d "%s" from "%s"',
 					$retval2, trim($err2), $cmd2 ) );
-			return new MediaTransformError( 'thumbnail_error', $clientWidth, $clientHeight, $err );
+			return new MediaTransformError( 'thumbnail_error', $clientWidth, $clientHeight);
 		} 
 		else 
 		{
